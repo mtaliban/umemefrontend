@@ -56,8 +56,8 @@ export default function ServicesPreview({
                   className="group relative rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
                   style={{
                     background: isElectricity
-                      ? 'linear-gradient(135deg, #92400E 0%, #D97706 50%, #F59E0B 100%)'
-                      : 'linear-gradient(135deg, #7C2D12 0%, #9A3412 60%, #C2410C 100%)',
+                      ? 'linear-gradient(135deg, #D97706 0%, #F59E0B 60%, #FCD34D 100%)'
+                      : 'linear-gradient(135deg, #0369A1 0%, #0EA5E9 60%, #38BDF8 100%)',
                   }}
                 >
                   {/* Dot pattern */}

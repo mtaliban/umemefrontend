@@ -83,15 +83,9 @@ export default async function HomePage({ params }: HomePageProps) {
   const defaultOrder = [
     'hero',
     'stats',
-    'about',
     'services',
-    'why_choose_us',
-    'how_we_work',
     'projects',
-    'training',
-    'clients',
     'testimonials',
-    'news',
     'cta',
   ];
 

@@ -47,7 +47,7 @@ export default function StatsStrip({ stats, locale }: StatsStripProps) {
   };
 
   return (
-    <section className="relative py-14 lg:py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #7C2D12 0%, #9A3412 60%, #C2410C 100%)' }}>
+    <section className="relative py-14 lg:py-20 overflow-hidden" style={{ background: '#0B2545' }}>
       {/* Dot pattern */}
       <div className="absolute inset-0 opacity-[0.06]" aria-hidden="true"
         style={{

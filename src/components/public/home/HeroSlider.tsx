@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
-import { ArrowRight, ChevronDown, Shield, Award, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -24,18 +24,6 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
     return locale === 'sw' ? (field.sw || field.en) : field.en;
   };
 
-  const trustItems = locale === 'sw'
-    ? [
-        { icon: Award, label: 'ISO Iliyoidhinishwa', value: 'Ubora wa Juu' },
-        { icon: MapPin, label: 'Mikoa 26', value: 'Tanzania Nzima' },
-        { icon: Shield, label: 'Mradi 400+', value: 'Uliokamilika' },
-      ]
-    : [
-        { icon: Award, label: 'ISO Certified', value: 'Quality Assured' },
-        { icon: MapPin, label: '26 Regions', value: 'Nationwide Coverage' },
-        { icon: Shield, label: '400+ Projects', value: 'Successfully Delivered' },
-      ];
-
   return (
     <section className="relative w-full" aria-label="Hero slider">
       <Swiper
@@ -46,7 +34,7 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
         navigation
         pagination={{ clickable: true }}
         loop={slides.length > 1}
-        className="w-full h-[540px] sm:h-[620px] lg:h-[740px]"
+        className="w-full h-[520px] sm:h-[600px] lg:h-[720px]"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide._id}>
@@ -61,17 +49,17 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
                   sizes="100vw"
                 />
               ) : (
-                <div className="w-full h-full gradient-primary" />
+                <div className="w-full h-full" style={{ background: '#0B2545' }} />
               )}
 
-              {/* Layered gradients */}
+              {/* Navy overlay */}
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(105deg, rgba(124,45,18,0.94) 0%, rgba(194,65,12,0.72) 50%, rgba(234,88,12,0.28) 100%)',
+                  background: 'linear-gradient(105deg, rgba(11,37,69,0.92) 0%, rgba(11,37,69,0.70) 55%, rgba(11,37,69,0.30) 100%)',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
               {/* Dot pattern */}
               <div className="absolute inset-0 opacity-[0.03]"
@@ -81,8 +69,8 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
               {/* Geometric decorations */}
               <div className="absolute right-0 top-0 h-full w-2/5 pointer-events-none hidden lg:block">
                 <div className="absolute right-20 top-1/4 w-64 h-64 rounded-full border border-white/10" />
-                <div className="absolute right-40 top-1/3 w-40 h-40 rounded-full border border-accent/15" />
-                <div className="absolute right-16 bottom-32 w-5 h-5 rounded-full bg-accent/50" />
+                <div className="absolute right-40 top-1/3 w-40 h-40 rounded-full border border-amber-400/15" />
+                <div className="absolute right-16 bottom-32 w-5 h-5 rounded-full bg-amber-400/50" />
                 <div className="absolute right-56 top-20 w-3 h-3 rounded-full bg-white/40" />
               </div>
 
@@ -92,8 +80,8 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
                   <div className="max-w-2xl">
                     {/* Eyebrow accent */}
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-0.5 bg-accent rounded-full" />
-                      <div className="w-4 h-0.5 bg-accent/50 rounded-full" />
+                      <div className="w-10 h-0.5 rounded-full" style={{ background: '#F59E0B' }} />
+                      <div className="w-4 h-0.5 rounded-full" style={{ background: 'rgba(245,158,11,0.5)' }} />
                     </div>
 
                     {slide.headline && (
@@ -133,30 +121,6 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Trust strip */}
-      <div
-        className="relative z-10"
-        style={{ background: 'linear-gradient(135deg, #7C2D12, #9A3412)' }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 divide-x divide-white/10">
-            {trustItems.map(({ icon: Icon, label, value }, i) => (
-              <div key={i} className="flex items-center gap-3 py-4 px-4 sm:px-8">
-                <div className="w-9 h-9 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4.5 h-4.5 text-accent" style={{ width: 18, height: 18 }} />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-sm leading-tight">{value}</p>
-                  <p className="text-white/80 text-xs mt-0.5">{label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Bottom amber line */}
-        <div className="h-px w-full" style={{ background: 'linear-gradient(to right, #D97706, #F59E0B, transparent)' }} />
-      </div>
     </section>
   );
 }

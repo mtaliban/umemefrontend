@@ -20,7 +20,7 @@ export default function CTABand({ cta, locale }: CTABandProps) {
   if (!title && !buttonLabel) return null;
 
   return (
-    <section className="relative py-20 lg:py-24 overflow-hidden gradient-cta">
+    <section className="relative py-20 lg:py-24 overflow-hidden" style={{ background: '#0B2545' }}>
       {/* Dot pattern */}
       <div className="absolute inset-0 opacity-[0.08]" aria-hidden="true"
         style={{
