@@ -67,7 +67,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-900 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5;
   }
 
   .btn-accent {
@@ -114,7 +114,7 @@
   }
 
   .prose a:hover {
-    @apply text-primary-dark;
+    @apply text-primary-900;
   }
 
   .prose ul li::marker {
