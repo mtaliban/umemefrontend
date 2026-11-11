@@ -58,7 +58,7 @@ export default function WhyChooseUs({ features, locale }: WhyChooseUsProps) {
             const colorClass = iconColors[index % iconColors.length];
             return (
               <div
-                key={feature._id || feature.id || index}
+                key={feature._id || index}
                 className="group bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 hover:-translate-y-1"
               >
                 <div className={`w-13 h-13 w-14 h-14 rounded-xl flex items-center justify-center mb-5 ${colorClass}`}>

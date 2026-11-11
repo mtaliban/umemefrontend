@@ -156,7 +156,7 @@ export default function ContentEditor({ collection, id, fields, onSave }: Conten
           <ImageUploader
             key={field.key}
             label={field.label}
-            value={(getVal(field.key) as ImageField | undefined) ?? null}
+            value={(getVal(field.key) as ImageField | undefined)}
             onChange={(img) => setVal(field.key, img ?? undefined)}
           />
         );

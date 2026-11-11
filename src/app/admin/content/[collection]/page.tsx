@@ -258,7 +258,7 @@ export default function AdminCollectionPage({ params }: PageProps) {
       collection={collection}
       title={config.title}
       addHref={`/admin/content/${collection}/new`}
-      editHref={(item) => `/admin/content/${collection}/${(item as { _id: string })._id}`}
+      editHref={(item) => `/admin/content/${collection}/${(item as unknown as { _id: string })._id}`}
       columns={config.columns}
       hasPublish={config.hasPublish}
       hasSort={config.hasSort}

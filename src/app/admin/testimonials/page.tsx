@@ -11,7 +11,7 @@ export default function AdminTestimonialsPage() {
         { key: 'name', label: 'Name' },
         { key: 'organisation', label: 'Organisation' },
         { key: 'rating', label: 'Rating' },
-        { key: 'is_active', label: 'Active', render: (item) => (item as { is_active: boolean }).is_active ? '✓' : '—' },
+        { key: 'is_active', label: 'Active', render: (item) => (item as unknown as { is_active: boolean }).is_active ? '✓' : '—' },
       ]}
       hasSort
     />

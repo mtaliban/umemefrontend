@@ -10,7 +10,7 @@ export default function HeroSlidesPage() {
       columns={[
         { key: 'headline', label: 'Headline' },
         { key: 'sort', label: 'Sort' },
-        { key: 'is_active', label: 'Active', render: (item) => (item as { is_active: boolean }).is_active ? '✓' : '—' },
+        { key: 'is_active', label: 'Active', render: (item) => (item as unknown as { is_active: boolean }).is_active ? '✓' : '—' },
       ]}
       hasSort
     />

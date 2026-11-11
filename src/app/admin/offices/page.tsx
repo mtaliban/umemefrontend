@@ -10,7 +10,7 @@ export default function AdminOfficesPage() {
       columns={[
         { key: 'name', label: 'Name' },
         { key: 'phone', label: 'Phone' },
-        { key: 'is_head_office', label: 'Head Office', render: (item) => (item as { is_head_office: boolean }).is_head_office ? '✓ HQ' : '—' },
+        { key: 'is_head_office', label: 'Head Office', render: (item) => (item as unknown as { is_head_office: boolean }).is_head_office ? '✓ HQ' : '—' },
         { key: 'sort', label: 'Sort' },
       ]}
       hasSort

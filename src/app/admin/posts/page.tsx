@@ -12,7 +12,7 @@ export default function AdminPostsPage() {
         { key: 'category', label: 'Category' },
         { key: 'slug', label: 'Slug' },
         { key: 'published_at', label: 'Published', render: (item) => {
-          const d = (item as { published_at?: string }).published_at;
+          const d = (item as unknown as { published_at?: string }).published_at;
           return d ? new Date(d).toLocaleDateString() : '—';
         }},
       ]}

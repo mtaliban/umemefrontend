@@ -10,7 +10,7 @@ export default function AdminTeamPage() {
       columns={[
         { key: 'name', label: 'Name' },
         { key: 'position', label: 'Position' },
-        { key: 'is_active', label: 'Active', render: (item) => (item as { is_active: boolean }).is_active ? '✓' : '—' },
+        { key: 'is_active', label: 'Active', render: (item) => (item as unknown as { is_active: boolean }).is_active ? '✓' : '—' },
         { key: 'sort', label: 'Sort' },
       ]}
       hasSort

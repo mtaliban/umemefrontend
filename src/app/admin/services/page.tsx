@@ -10,7 +10,7 @@ export default function AdminServicesPage() {
       columns={[
         { key: 'title', label: 'Title' },
         { key: 'slug', label: 'Slug' },
-        { key: 'is_featured', label: 'Featured', render: (item) => (item as { is_featured: boolean }).is_featured ? '⭐' : '—' },
+        { key: 'is_featured', label: 'Featured', render: (item) => (item as unknown as { is_featured: boolean }).is_featured ? '⭐' : '—' },
       ]}
       hasPublish
       hasSort

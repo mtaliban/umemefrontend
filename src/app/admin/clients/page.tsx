@@ -10,7 +10,7 @@ export default function AdminClientsPage() {
       columns={[
         { key: 'name', label: 'Name' },
         { key: 'type', label: 'Type' },
-        { key: 'is_featured', label: 'Featured', render: (item) => (item as { is_featured: boolean }).is_featured ? '⭐' : '—' },
+        { key: 'is_featured', label: 'Featured', render: (item) => (item as unknown as { is_featured: boolean }).is_featured ? '⭐' : '—' },
         { key: 'sort', label: 'Sort' },
       ]}
       hasSort

@@ -81,11 +81,6 @@ export default function ServicesPreview({
                     <h3 className="text-2xl font-bold text-white font-heading mb-2">
                       {resolveT(cat.name)}
                     </h3>
-                    {cat.description && (
-                      <p className="text-white/70 text-sm mb-4 leading-relaxed max-w-sm">
-                        {resolveT(cat.description)}
-                      </p>
-                    )}
                     <div className="flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
                       <span>{locale === 'sw' ? 'Angalia huduma' : 'Explore services'}</span>
                       <ArrowRight className="w-4 h-4" />

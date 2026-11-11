@@ -14,7 +14,7 @@ export default function AdminProjectsPage() {
           key: 'project_status',
           label: 'Project Status',
           render: (item) => {
-            const status = (item as { project_status: string }).project_status;
+            const status = (item as unknown as { project_status: string }).project_status;
             return (
               <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
                 status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-green-100 text-green-800'

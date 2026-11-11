@@ -10,7 +10,7 @@ export default function AdminTrainingPage() {
       columns={[
         { key: 'title', label: 'Title' },
         { key: 'slug', label: 'Slug' },
-        { key: 'is_open', label: 'Open', render: (item) => (item as { is_open: boolean }).is_open ? '✓ Open' : 'Closed' },
+        { key: 'is_open', label: 'Open', render: (item) => (item as unknown as { is_open: boolean }).is_open ? '✓ Open' : 'Closed' },
       ]}
       hasPublish
     />
