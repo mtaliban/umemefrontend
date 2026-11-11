@@ -122,13 +122,10 @@ export default async function Footer({ settings }: FooterProps) {
             </div>
           </div>
 
-          {/* Col 2: Quick links — 2 columns on mobile */}
+          {/* Col 2: Links — 2 columns on mobile, no heading */}
           <div>
-            <h3 className="text-white font-bold font-heading mb-4 text-xs uppercase tracking-wider">
-              {t('quickLinks')}
-            </h3>
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-2.5">
-              {links.map((link) => (
+              {links.filter((l) => l.href !== '/faq').map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {link.label}
@@ -176,7 +173,7 @@ export default async function Footer({ settings }: FooterProps) {
         {/* Bottom row */}
         <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-500">
-            &copy; {year} {settings.company_name}. {t('allRightsReserved')}
+            &copy; {year} {settings.company_name}
           </p>
           <Link href="/privacy" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
             {t('privacyPolicy')}

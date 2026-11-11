@@ -22,10 +22,7 @@ export default function FeaturedProjects({ projects, locale, viewAllLabel }: Fea
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <span className="section-label">
-              {locale === 'sw' ? 'Kazi Yetu' : 'Our Work'}
-            </span>
-            <h2 className="mt-3 section-title">
+            <h2 className="section-title">
               {locale === 'sw' ? 'Miradi Iliyoangaziwa' : 'Featured Projects'}
             </h2>
           </div>

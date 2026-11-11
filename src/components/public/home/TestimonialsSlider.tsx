@@ -25,10 +25,7 @@ export default function TestimonialsSlider({ testimonials, locale }: Testimonial
     <section className="py-14 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="section-label">
-            {locale === 'sw' ? 'Ushuhuda' : 'Testimonials'}
-          </span>
-          <h2 className="mt-2 section-title">
+          <h2 className="section-title">
             {locale === 'sw' ? 'Wateja Wetu Wanasema Nini' : 'What Our Clients Say'}
           </h2>
         </div>
@@ -42,7 +39,7 @@ export default function TestimonialsSlider({ testimonials, locale }: Testimonial
           breakpoints={{ 1024: { slidesPerView: 2 } }}
           className="pb-12"
         >
-          {testimonials.map((item) => (
+          {testimonials.slice(0, 3).map((item) => (
             <SwiperSlide key={item._id} className="h-auto">
               <div className="bg-white rounded-xl p-6 h-full border border-gray-100 shadow-card relative">
                 <div className="absolute top-5 right-5 opacity-10">
@@ -77,7 +74,7 @@ export default function TestimonialsSlider({ testimonials, locale }: Testimonial
                     />
                   ) : (
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm"
+                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
                       style={{ background: '#F5B700', color: '#111111' }}
                     >
                       {item.name.charAt(0)}

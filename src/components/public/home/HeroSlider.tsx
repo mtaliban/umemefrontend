@@ -28,7 +28,7 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
       {slide.image?.url ? (
         <Image
           src={slide.image.url}
-          alt={resolveT(slide.image.alt) || resolveT(slide.headline)}
+          alt=""
           fill
           className="object-cover"
           priority

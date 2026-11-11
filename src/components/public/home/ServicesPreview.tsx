@@ -26,21 +26,8 @@ export default function ServicesPreview({
   return (
     <section className="py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <span className="section-label">
-            {locale === 'sw' ? 'Huduma Zetu' : 'What We Do'}
-          </span>
-          <h2 className="mt-2 section-title">
-            {locale === 'sw' ? 'Huduma za Uhandisi' : 'Engineering Services'}
-          </h2>
-          <p className="mt-3 text-gray-500 text-sm max-w-xl mx-auto">
-            {locale === 'sw'
-              ? 'Tunatoa huduma kamili za umeme na maji kwa sekta zote.'
-              : 'Comprehensive electrical and water engineering solutions across all sectors.'}
-          </p>
-        </div>
 
-        {/* Category cards — 2 side-by-side */}
+        {/* Category cards — full link, no "Explore" text */}
         {categories.length > 0 && (
           <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8">
             {categories.map((cat) => {
@@ -63,15 +50,9 @@ export default function ServicesPreview({
                       <Droplets className="w-5 h-5" style={{ color: '#111111' }} />
                     )}
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="font-bold text-gray-900 text-sm font-heading leading-snug truncate">
-                      {resolveT(cat.name)}
-                    </h3>
-                    <div className="flex items-center gap-1 text-gray-500 text-xs mt-0.5 group-hover:text-gray-700 transition-colors">
-                      <span>{locale === 'sw' ? 'Angalia' : 'Explore'}</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
+                  <h3 className="font-bold text-gray-900 text-sm font-heading leading-snug truncate">
+                    {resolveT(cat.name)}
+                  </h3>
                 </Link>
               );
             })}
@@ -92,7 +73,7 @@ export default function ServicesPreview({
                   {service.cover?.url ? (
                     <Image
                       src={service.cover.url}
-                      alt={resolveT(service.cover.alt) || resolveT(service.title)}
+                      alt=""
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 72px, (max-width: 1024px) 50vw, 33vw"
@@ -103,14 +84,11 @@ export default function ServicesPreview({
                     </div>
                   )}
                 </div>
-                {/* Text */}
+                {/* Title only — no repeated summary */}
                 <div className="flex-1 min-w-0 sm:p-4">
-                  <h3 className="font-bold text-gray-900 font-heading group-hover:text-gray-700 transition-colors text-sm leading-snug line-clamp-1">
+                  <h3 className="font-bold text-gray-900 font-heading group-hover:text-gray-700 transition-colors text-sm leading-snug line-clamp-2">
                     {resolveT(service.title)}
                   </h3>
-                  <p className="mt-1 text-xs text-gray-500 line-clamp-2 leading-relaxed">
-                    {resolveT(service.summary)}
-                  </p>
                 </div>
               </Link>
             ))}

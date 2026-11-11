@@ -42,12 +42,6 @@ export default function TrainingHighlight({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
-              {/* Badge */}
-              {programme.is_open && (
-                <div className="absolute top-5 left-5 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                  {locale === 'sw' ? 'Zinakubali Maombi' : 'Accepting Applications'}
-                </div>
-              )}
             </div>
           )}
 

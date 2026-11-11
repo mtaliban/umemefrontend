@@ -44,16 +44,14 @@ export default async function RequestServicePage({
 
   const steps = locale === 'sw'
     ? [
-        { label: 'Jaza fomu', desc: 'Toa maelezo ya huduma unayohitaji' },
-        { label: 'Tutawasiliana', desc: 'Timu yetu itakupigia simu au kutuma barua pepe' },
-        { label: 'Tathmini', desc: 'Tutafanya tathmini ya mahitaji yako bila malipo' },
-        { label: 'Utekelezaji', desc: 'Tutatekeleza mradi kwa ubora wa juu' },
+        { label: 'Tunakupigia ndani ya siku 1–2', desc: 'Mhandisi wetu atawasiliana nawe haraka' },
+        { label: 'Tunakagua eneo bila malipo', desc: 'Tutafika eneo lako bila gharama yoyote' },
+        { label: 'Tunakutumia bei', desc: 'Utapata quotation wazi na isiyo na gharama zilizofichwa' },
       ]
     : [
-        { label: 'Submit request', desc: 'Fill in details about the service you need' },
-        { label: 'We contact you', desc: 'Our team will reach out within 24 hours' },
-        { label: 'Free assessment', desc: "We'll assess your requirements at no cost" },
-        { label: 'Project delivery', desc: 'We execute your project to the highest standard' },
+        { label: 'We call you within 1–2 days', desc: 'Our engineer will reach out to you promptly' },
+        { label: 'We visit your site, free of charge', desc: 'We come to you at no cost whatsoever' },
+        { label: 'We send you a quotation', desc: 'Clear pricing with no hidden charges' },
       ];
 
   return (
@@ -72,7 +70,7 @@ export default async function RequestServicePage({
               {/* Intro card */}
               <div
                 className="rounded-2xl p-7 text-white relative overflow-hidden"
-                style={{ background: 'linear-gradient(160deg, #7C2D12 0%, #9A3412 100%)' }}
+                style={{ background: '#111111' }}
               >
                 <div
                   className="absolute inset-0 opacity-[0.05]"
@@ -101,8 +99,8 @@ export default async function RequestServicePage({
                   {steps.map((step, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div
-                        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-bold mt-0.5"
-                        style={{ background: 'linear-gradient(135deg, #7C2D12, #9A3412)' }}
+                        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5"
+                        style={{ background: '#F5B700', color: '#111111' }}
                       >
                         {i + 1}
                       </div>

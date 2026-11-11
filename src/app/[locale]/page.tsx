@@ -1,18 +1,11 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getHomeData, getSettings } from '@/lib/api';
-import type { Locale } from '@/i18n/routing';
 import HeroSlider from '@/components/public/home/HeroSlider';
 import StatsStrip from '@/components/public/home/StatsStrip';
-import AboutPreview from '@/components/public/home/AboutPreview';
 import ServicesPreview from '@/components/public/home/ServicesPreview';
-import WhyChooseUs from '@/components/public/home/WhyChooseUs';
-import HowWeWork from '@/components/public/home/HowWeWork';
 import FeaturedProjects from '@/components/public/home/FeaturedProjects';
-import TrainingHighlight from '@/components/public/home/TrainingHighlight';
-import ClientsStrip from '@/components/public/home/ClientsStrip';
 import TestimonialsSlider from '@/components/public/home/TestimonialsSlider';
-import LatestNews from '@/components/public/home/LatestNews';
 import CTABand from '@/components/public/home/CTABand';
 
 export async function generateMetadata({
@@ -72,23 +65,10 @@ export default async function HomePage({ params }: HomePageProps) {
     data = {};
   }
 
-  // Sort sections by sort field (ascending)
-  const sections = (data.settings?.home_sections ?? [])
-    .filter((s) => s.enabled)
-    .sort((a, b) => a.sort - b.sort)
-    .map((s) => s.key);
+  // Always use this fixed order — ignore backend home_sections
+  const sections = ['hero', 'stats', 'services', 'projects', 'testimonials', 'cta'];
 
-  // Default order if no settings
-  const defaultOrder = [
-    'hero',
-    'stats',
-    'services',
-    'projects',
-    'testimonials',
-    'cta',
-  ];
-
-  const orderedSections = sections.length > 0 ? sections : defaultOrder;
+  const whatsappNumber = data.settings?.whatsapp_number ?? '';
 
   const renderSection = (key: string) => {
     switch (key) {
@@ -102,16 +82,6 @@ export default async function HomePage({ params }: HomePageProps) {
           <StatsStrip key="stats" stats={data.stats} locale={locale} />
         ) : null;
 
-      case 'about':
-        return data.about ? (
-          <AboutPreview
-            key="about"
-            about={data.about}
-            locale={locale}
-            readMoreLabel={tCommon('readMore')}
-          />
-        ) : null;
-
       case 'services':
         return (data.service_categories?.length || data.featured_services?.length) ? (
           <ServicesPreview
@@ -121,18 +91,6 @@ export default async function HomePage({ params }: HomePageProps) {
             locale={locale}
             viewAllLabel={tCommon('viewAll')}
           />
-        ) : null;
-
-      case 'why_choose_us':
-      case 'features':
-        return data.features && data.features.length > 0 ? (
-          <WhyChooseUs key="why_choose_us" features={data.features} locale={locale} />
-        ) : null;
-
-      case 'how_we_work':
-      case 'work_steps':
-        return data.work_steps && data.work_steps.length > 0 ? (
-          <HowWeWork key="how_we_work" steps={data.work_steps} locale={locale} />
         ) : null;
 
       case 'projects':
@@ -145,40 +103,19 @@ export default async function HomePage({ params }: HomePageProps) {
           />
         ) : null;
 
-      case 'training':
-        return data.training_highlight ? (
-          <TrainingHighlight
-            key="training"
-            programme={data.training_highlight}
-            locale={locale}
-            applyNowLabel={t('applyNow')}
-            nextIntakeLabel={t('nextIntake')}
-          />
-        ) : null;
-
-      case 'clients':
-        return data.clients && data.clients.length > 0 ? (
-          <ClientsStrip key="clients" clients={data.clients} locale={locale} />
-        ) : null;
-
       case 'testimonials':
         return data.testimonials && data.testimonials.length > 0 ? (
           <TestimonialsSlider key="testimonials" testimonials={data.testimonials} locale={locale} />
         ) : null;
 
-      case 'news':
-        return data.latest_posts && data.latest_posts.length > 0 ? (
-          <LatestNews
-            key="news"
-            posts={data.latest_posts}
-            locale={locale}
-            viewAllLabel={t('viewAllNews')}
-          />
-        ) : null;
-
       case 'cta':
         return data.cta ? (
-          <CTABand key="cta" cta={data.cta} locale={locale} />
+          <CTABand
+            key="cta"
+            cta={data.cta}
+            locale={locale}
+            whatsappNumber={whatsappNumber}
+          />
         ) : null;
 
       default:
@@ -214,7 +151,7 @@ export default async function HomePage({ params }: HomePageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       )}
-      {orderedSections.map((key) => renderSection(key))}
+      {sections.map((key) => renderSection(key))}
     </>
   );
 }

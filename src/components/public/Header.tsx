@@ -78,19 +78,13 @@ export default function Header({ settings }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-sm font-medium whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                     isActive(link.href)
-                      ? 'text-gray-900 font-semibold'
-                      : 'text-gray-500 hover:text-gray-900'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
-                  {isActive(link.href) && (
-                    <span
-                      className="absolute -bottom-[22px] left-0 right-0 h-0.5 rounded-full"
-                      style={{ background: '#F5B700' }}
-                    />
-                  )}
                 </Link>
               ))}
             </nav>
