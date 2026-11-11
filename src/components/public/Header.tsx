@@ -18,13 +18,11 @@ export default function Header({ settings }: HeaderProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Prevent body scroll when sheet is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsOpen(false); };
     document.addEventListener('keydown', onKey);
@@ -50,56 +48,37 @@ export default function Header({ settings }: HeaderProps) {
     .map((w) => w[0].toUpperCase())
     .join('') || 'KP';
 
-  /* ── Language pill shared between desktop & sheet ── */
-  const LangToggle = ({ className = '' }: { className?: string }) => (
-    <div className={`flex items-center border border-gray-200 rounded-full overflow-hidden text-xs font-bold ${className}`}>
-      <Link
-        href="/"
-        locale="en"
-        className={`px-3 py-1.5 transition-colors ${
-          locale === 'en' ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-800'
-        }`}
-        onClick={() => setIsOpen(false)}
-      >
-        EN
-      </Link>
-      <Link
-        href="/"
-        locale="sw"
-        className={`px-3 py-1.5 transition-colors ${
-          locale === 'sw' ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-800'
-        }`}
-        onClick={() => setIsOpen(false)}
-      >
-        SW
-      </Link>
-    </div>
-  );
-
   return (
     <>
-      {/* ── Sticky header bar ── */}
+      {/* ── Top bar ── */}
       <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16">
+          <div className="flex items-center h-16 gap-6">
 
-            {/* Logo — far left */}
-            <Link href="/" className="flex items-center flex-shrink-0 mr-auto" aria-label="Home">
+            {/* 1. Logo — anchored far left */}
+            <Link
+              href="/"
+              aria-label="Home"
+              className="flex-shrink-0"
+            >
               <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm"
+                className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm tracking-tight"
                 style={{ background: '#F5B700', color: '#111111' }}
               >
                 {initials}
               </div>
             </Link>
 
-            {/* Desktop nav — centred */}
-            <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+            {/* 2. Nav — expands to fill middle, items spread evenly */}
+            <nav
+              className="hidden lg:flex flex-1 items-center justify-center gap-9"
+              aria-label="Main navigation"
+            >
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-sm font-medium pb-0.5 transition-colors ${
+                  className={`relative text-sm font-medium whitespace-nowrap transition-colors ${
                     isActive(link.href)
                       ? 'text-gray-900 font-semibold'
                       : 'text-gray-500 hover:text-gray-900'
@@ -108,7 +87,7 @@ export default function Header({ settings }: HeaderProps) {
                   {link.label}
                   {isActive(link.href) && (
                     <span
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
+                      className="absolute -bottom-[22px] left-0 right-0 h-0.5 rounded-full"
                       style={{ background: '#F5B700' }}
                     />
                   )}
@@ -116,27 +95,53 @@ export default function Header({ settings }: HeaderProps) {
               ))}
             </nav>
 
-            {/* Right side: lang (desktop) + hamburger (mobile) */}
-            <div className="flex items-center gap-3 ml-auto lg:ml-6">
-              <LangToggle className="hidden lg:flex" />
-
-              <button
-                type="button"
-                className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors"
-                onClick={() => setIsOpen(true)}
-                aria-label="Open menu"
-                aria-expanded={isOpen}
-              >
-                <Menu className="w-6 h-6" />
-              </button>
+            {/* 3. Language toggle — anchored far right, button style */}
+            <div className="hidden lg:flex items-center flex-shrink-0">
+              {/* subtle divider */}
+              <div className="w-px h-5 bg-gray-200 mr-5" />
+              <div className="flex items-center rounded-xl border-2 border-gray-200 overflow-hidden">
+                <Link
+                  href="/"
+                  locale="en"
+                  className={`px-4 py-1.5 text-xs font-bold tracking-wider transition-colors ${
+                    locale === 'en'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  EN
+                </Link>
+                <div className="w-px h-full bg-gray-200" />
+                <Link
+                  href="/"
+                  locale="sw"
+                  className={`px-4 py-1.5 text-xs font-bold tracking-wider transition-colors ${
+                    locale === 'sw'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  SW
+                </Link>
+              </div>
             </div>
+
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              className="lg:hidden ml-auto p-2 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors"
+              onClick={() => setIsOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isOpen}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
 
           </div>
         </div>
       </header>
 
-      {/* ── Mobile bottom-sheet ── */}
-      {/* Backdrop */}
+      {/* ── Mobile bottom-sheet overlay ── */}
       <div
         className={`fixed inset-0 z-50 bg-black/40 lg:hidden transition-opacity duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -145,21 +150,20 @@ export default function Header({ settings }: HeaderProps) {
         aria-hidden="true"
       />
 
-      {/* Sheet panel — slides up from bottom */}
+      {/* Sheet panel */}
       <div
         className={`fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl lg:hidden
           transition-transform duration-300 ease-out max-h-[88vh] flex flex-col
           ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
       >
         {/* Drag handle */}
         <div className="flex justify-center pt-3 pb-1 flex-shrink-0">
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
 
-        {/* Close row */}
+        {/* Title row */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 flex-shrink-0">
           <span className="text-sm font-semibold text-gray-900">
             {locale === 'sw' ? 'Menyu' : 'Menu'}
@@ -174,7 +178,7 @@ export default function Header({ settings }: HeaderProps) {
           </button>
         </div>
 
-        {/* Nav links */}
+        {/* Links */}
         <nav className="flex-1 overflow-y-auto px-4 py-3" aria-label="Mobile navigation">
           {navLinks.map((link) => (
             <Link
@@ -197,10 +201,36 @@ export default function Header({ settings }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Footer row: lang toggle */}
-        <div className="flex-shrink-0 px-5 py-4 border-t border-gray-100 flex items-center justify-between">
-          <span className="text-xs text-gray-400 font-medium">Language / Lugha</span>
-          <LangToggle />
+        {/* Language row */}
+        <div className="flex-shrink-0 px-5 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50 rounded-b-none">
+          <span className="text-xs text-gray-500 font-medium">Language / Lugha</span>
+          <div className="flex items-center rounded-xl border-2 border-gray-200 overflow-hidden">
+            <Link
+              href="/"
+              locale="en"
+              className={`px-5 py-2 text-xs font-bold tracking-wider transition-colors ${
+                locale === 'en'
+                  ? 'bg-gray-900 text-white'
+                  : 'text-gray-500 hover:bg-gray-100'
+              }`}
+              onClick={() => setIsOpen(false)}
+            >
+              EN
+            </Link>
+            <div className="w-px h-full bg-gray-200" />
+            <Link
+              href="/"
+              locale="sw"
+              className={`px-5 py-2 text-xs font-bold tracking-wider transition-colors ${
+                locale === 'sw'
+                  ? 'bg-gray-900 text-white'
+                  : 'text-gray-500 hover:bg-gray-100'
+              }`}
+              onClick={() => setIsOpen(false)}
+            >
+              SW
+            </Link>
+          </div>
         </div>
       </div>
     </>
