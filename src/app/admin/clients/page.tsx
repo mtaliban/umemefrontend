@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ContentList from '@/components/admin/ContentList';
 
 export default function AdminClientsPage() {
