@@ -8,7 +8,7 @@ import PageBanner from '@/components/public/PageBanner';
 import ServiceRequestForm from './ServiceRequestForm';
 
 interface RequestServicePageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ service?: string }>;
 }
 

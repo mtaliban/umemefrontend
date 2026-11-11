@@ -8,7 +8,7 @@ import type { Locale } from '@/i18n/routing';
 import PageBanner from '@/components/public/PageBanner';
 
 interface ClientsPageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }
 
 export async function generateMetadata({ params }: ClientsPageProps): Promise<Metadata> {

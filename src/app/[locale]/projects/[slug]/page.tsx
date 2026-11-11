@@ -11,7 +11,7 @@ import PageBanner from '@/components/public/PageBanner';
 import ProjectGallery from './ProjectGallery';
 
 interface ProjectDetailProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {

@@ -10,7 +10,7 @@ import PageBanner from '@/components/public/PageBanner';
 import ShareButtons from './ShareButtons';
 
 interface NewsArticleProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {

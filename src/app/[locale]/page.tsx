@@ -19,7 +19,7 @@ import CTABand from '@/components/public/home/CTABand';
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? '';
@@ -58,7 +58,7 @@ export async function generateMetadata({
 }
 
 interface HomePageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }
 
 export default async function HomePage({ params }: HomePageProps) {

@@ -7,7 +7,7 @@ import PageBanner from '@/components/public/PageBanner';
 import ContactForm from './ContactForm';
 
 interface ContactPageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {

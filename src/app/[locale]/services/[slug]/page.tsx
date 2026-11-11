@@ -9,7 +9,7 @@ import type { Locale } from '@/i18n/routing';
 import PageBanner from '@/components/public/PageBanner';
 
 interface ServiceDetailProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {

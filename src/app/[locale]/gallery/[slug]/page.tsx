@@ -9,7 +9,7 @@ import PageBanner from '@/components/public/PageBanner';
 import AlbumGrid from './AlbumGrid';
 
 interface GalleryAlbumProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {

@@ -9,7 +9,7 @@ import PageBanner from '@/components/public/PageBanner';
 import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectsPageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string; status?: string; year?: string; page?: string }>;
 }
 

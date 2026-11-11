@@ -30,7 +30,7 @@ import type {
   DashboardData,
 } from './types';
 
-type Lang = 'en' | 'sw';
+type Lang = string;
 
 function getBaseUrl(): string {
   if (typeof window === 'undefined') {

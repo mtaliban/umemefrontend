@@ -8,7 +8,7 @@ import type { Locale } from '@/i18n/routing';
 import PageBanner from '@/components/public/PageBanner';
 
 interface NewsPageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string; q?: string; page?: string }>;
 }
 
