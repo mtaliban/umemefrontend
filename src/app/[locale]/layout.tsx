@@ -10,6 +10,7 @@ import Footer from '@/components/public/Footer';
 import WhatsAppButton from '@/components/public/WhatsAppButton';
 import BackToTop from '@/components/public/BackToTop';
 import type { Locale } from '@/i18n/routing';
+import type { SiteSettings, Service } from '@/lib/types';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -75,8 +76,8 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const messages = await getMessages();
 
-  let settings;
-  let services;
+  let settings: SiteSettings;
+  let services: Service[];
   try {
     [settings, services] = await Promise.all([
       getSettings(locale),
