@@ -18,7 +18,7 @@ export default function FeaturedProjects({ projects, locale, viewAllLabel }: Fea
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
@@ -55,8 +55,8 @@ export default function FeaturedProjects({ projects, locale, viewAllLabel }: Fea
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (
-                  <div className="w-full h-full gradient-primary flex items-center justify-center">
-                    <span className="text-white/30 text-6xl font-bold font-heading">
+                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                    <span className="text-gray-300 text-5xl font-bold font-heading">
                       {resolveT(project.title).charAt(0)}
                     </span>
                   </div>
@@ -69,7 +69,7 @@ export default function FeaturedProjects({ projects, locale, viewAllLabel }: Fea
                   <span className={`px-3 py-1 text-xs font-bold rounded-full shadow-sm ${
                     project.project_status === 'completed'
                       ? 'bg-green-500 text-white'
-                      : 'bg-primary text-white'
+                      : 'bg-gray-800 text-white'
                   }`}>
                     {project.project_status === 'completed'
                       ? (locale === 'sw' ? 'Imekamilika' : 'Completed')

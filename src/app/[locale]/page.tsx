@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getHomeData, getSettings } from '@/lib/api';
 import type { Locale } from '@/i18n/routing';
-import TopBar from '@/components/public/TopBar';
 import HeroSlider from '@/components/public/home/HeroSlider';
 import StatsStrip from '@/components/public/home/StatsStrip';
 import AboutPreview from '@/components/public/home/AboutPreview';
@@ -215,7 +214,6 @@ export default async function HomePage({ params }: HomePageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       )}
-      {settings && <TopBar settings={settings} />}
       {orderedSections.map((key) => renderSection(key))}
     </>
   );

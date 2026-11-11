@@ -18,11 +18,10 @@ export default function BackToTop() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-24 right-5 z-40 flex items-center justify-center w-11 h-11 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
-      style={{ background: 'linear-gradient(135deg, #7C2D12, #9A3412)' }}
+      className="fixed bottom-20 right-4 z-40 hidden sm:flex items-center justify-center w-10 h-10 bg-gray-800 hover:bg-gray-900 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
       aria-label="Back to top"
     >
-      <ArrowUp className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
+      <ArrowUp className="w-4 h-4" />
     </button>
   );
 }

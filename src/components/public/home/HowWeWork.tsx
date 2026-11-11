@@ -1,4 +1,4 @@
-import { ClipboardList, Search, Wrench, CheckCircle2 } from 'lucide-react';
+import { ClipboardList, Search, Wrench, CheckCircle2, FileCheck } from 'lucide-react';
 import type { WorkStep } from '@/lib/types';
 
 interface HowWeWorkProps {
@@ -6,12 +6,7 @@ interface HowWeWorkProps {
   locale: string;
 }
 
-const defaultIcons: React.ComponentType<{ className?: string }>[] = [
-  ClipboardList,
-  Search,
-  Wrench,
-  CheckCircle2,
-];
+const icons = [ClipboardList, Search, Wrench, FileCheck, CheckCircle2];
 
 export default function HowWeWork({ steps, locale }: HowWeWorkProps) {
   if (!steps || steps.length === 0) return null;
@@ -22,63 +17,49 @@ export default function HowWeWork({ steps, locale }: HowWeWorkProps) {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #7C2D12 0%, #9A3412 100%)' }}>
-      {/* Dot pattern */}
-      <div className="absolute inset-0 opacity-[0.05]" aria-hidden="true"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-      {/* Accent top line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="text-accent font-bold text-xs uppercase tracking-widest">
+    <section className="py-14 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <span className="section-label">
             {locale === 'sw' ? 'Mchakato Wetu' : 'Our Process'}
           </span>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-white font-heading">
+          <h2 className="mt-2 section-title">
             {locale === 'sw' ? 'Jinsi Tunavyofanya Kazi' : 'How We Work'}
           </h2>
-          <p className="mt-4 text-white/95 max-w-2xl mx-auto text-sm lg:text-base">
-            {locale === 'sw'
-              ? 'Kila mradi unafuata mchakato madhubuti ili kuhakikisha matokeo bora.'
-              : 'Every project follows a rigorous process to ensure excellent outcomes and client satisfaction.'}
-          </p>
         </div>
 
         <div className="relative">
           {/* Connecting line (desktop) */}
           <div
-            className="hidden lg:block absolute top-14 left-[calc(12.5%+32px)] right-[calc(12.5%+32px)] h-px"
-            style={{ background: 'linear-gradient(to right, transparent, rgba(245,158,11,0.4), transparent)' }}
+            className="hidden lg:block absolute top-8 left-[calc(10%+40px)] right-[calc(10%+40px)] h-px bg-gray-200"
             aria-hidden="true"
           />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {steps.map((step, index) => {
-              const IconComponent = defaultIcons[index % defaultIcons.length];
+              const Icon = icons[index % icons.length];
               return (
-                <div key={step._id} className="relative text-center group">
-                  {/* Circle with number */}
-                  <div className="relative inline-flex flex-col items-center mb-5">
-                    <div className="relative w-28 h-28 rounded-full flex items-center justify-center"
-                      style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}>
-                      <IconComponent className="w-10 h-10 text-white/95" />
+                <div key={step._id} className="flex lg:flex-col items-start lg:items-center gap-4 lg:gap-0 lg:text-center">
+                  {/* Step number + icon */}
+                  <div className="relative flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full bg-gray-100 border-2 border-gray-200 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-gray-500" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm shadow-lg"
-                      style={{ background: 'linear-gradient(135deg, #D97706, #F59E0B)' }}>
+                    <div
+                      className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs"
+                      style={{ background: '#F5B700', color: '#111111' }}
+                    >
                       {index + 1}
                     </div>
                   </div>
-
-                  <h3 className="text-base font-bold text-white font-heading mb-2">
-                    {resolveT(step.title)}
-                  </h3>
-                  <p className="text-white/95 text-sm leading-relaxed">
-                    {resolveT(step.text)}
-                  </p>
+                  <div className="lg:mt-4">
+                    <h3 className="text-sm font-bold text-gray-900 font-heading mb-1">
+                      {resolveT(step.title)}
+                    </h3>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      {resolveT(step.text)}
+                    </p>
+                  </div>
                 </div>
               );
             })}
