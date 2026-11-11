@@ -50,8 +50,8 @@ export default function Header({ settings }: HeaderProps) {
           : 'bg-white shadow-sm border-b border-gray-100'
       }`}
     >
-      {/* Premium top accent line */}
-      <div className="h-[3px] w-full" style={{ background: 'linear-gradient(to right, #7C2D12 0%, #9A3412 40%, #F59E0B 70%, #FBBF24 100%)' }} />
+      {/* Top accent line */}
+      <div className="h-[3px] w-full" style={{ background: 'linear-gradient(to right, #0B2545 0%, #0D2E55 40%, #F59E0B 70%, #FBBF24 100%)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -123,8 +123,7 @@ export default function Header({ settings }: HeaderProps) {
 
             <Link
               href="/request-service"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 text-white text-sm font-bold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              style={{ background: 'linear-gradient(135deg, #D97706, #F59E0B)' }}
+              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:bg-primary-900 min-h-[44px]"
             >
               {t('requestService')}
             </Link>

@@ -10,29 +10,38 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#EA580C",
-          dark: "#C2410C",
-          light: "#F97316",
+          DEFAULT: '#0B2545',
+          50: '#E8EEF5',
+          100: '#C5D3E8',
+          800: '#0B2545',
+          900: '#071A33',
         },
         accent: {
-          DEFAULT: "#F97316",
-          dark: "#EA580C",
-          light: "#FB923C",
+          DEFAULT: "#F59E0B",
+          dark: "#D97706",
+          light: "#FEF3C7",
         },
-        muted: "#6B7280",
-        surface: "#F8FAFC",
-        navy: "#7C2D12",
-        electricity: "#F59E0B",
-        water: "#0EA5E9",
+        electric: {
+          DEFAULT: '#F59E0B',
+          light: '#FEF3C7',
+          dark: '#78350F',
+        },
+        water: {
+          DEFAULT: '#0EA5E9',
+          light: '#E0F2FE',
+          dark: '#0C4A6E',
+        },
+        muted: "#64748B",
+        surface: '#F4F7FB',
       },
       fontFamily: {
         heading: ["var(--font-poppins)", "sans-serif"],
         body: ["var(--font-inter)", "sans-serif"],
       },
       backgroundImage: {
-        "gradient-primary": "linear-gradient(135deg, #C2410C 0%, #EA580C 60%, #F97316 100%)",
-        "gradient-cta": "linear-gradient(135deg, #C2410C 0%, #EA580C 50%, #F97316 100%)",
-        "gradient-dark": "linear-gradient(180deg, #7C2D12 0%, #9A3412 100%)",
+        "gradient-primary": "linear-gradient(135deg, #071A33 0%, #0B2545 60%, #0D2E55 100%)",
+        "gradient-cta": "linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FBBF24 100%)",
+        "gradient-dark": "linear-gradient(180deg, #071A33 0%, #0B2545 100%)",
       },
       boxShadow: {
         "card": "0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",

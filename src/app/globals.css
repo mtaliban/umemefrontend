@@ -6,6 +6,12 @@
   --color-primary: #9A3412;
   --color-primary-dark: #7C2D12;
   --color-accent: #F59E0B;
+  --primary: #0B2545;
+  --accent: #F59E0B;
+  --water: #0EA5E9;
+  --surface: #F4F7FB;
+  --text: #1F2937;
+  --muted: #64748B;
 }
 
 @layer base {
@@ -27,7 +33,7 @@
   /* Branded text selection */
   ::selection {
     background-color: rgba(245, 158, 11, 0.25);
-    color: #7C2D12;
+    color: #0B2545;
   }
 
   /* Thin branded scrollbar */
@@ -39,11 +45,11 @@
     background: #f1f5f9;
   }
   ::-webkit-scrollbar-thumb {
-    background: #9A3412;
+    background: #0B2545;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #7C2D12;
+    background: #071A33;
   }
 
   /* Better focus ring */
@@ -142,7 +148,7 @@
 
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, #7C2D12 0%, #9A3412 60%, #C2410C 100%);
+    background: linear-gradient(135deg, #071A33 0%, #0B2545 60%, #0D2E55 100%);
   }
 
   .gradient-cta {

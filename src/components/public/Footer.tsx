@@ -32,9 +32,9 @@ export default async function Footer({ settings, services }: FooterProps) {
   ];
 
   return (
-    <footer style={{ background: '#7C2D12' }}>
+    <footer style={{ background: '#0B2545' }}>
       {/* Top accent bar */}
-      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #D97706, #F59E0B, #FBBF24)' }} />
+      <div className="h-1 w-full" style={{ background: 'linear-gradient(to right, #F59E0B, #FBBF24, #0EA5E9)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -130,7 +130,7 @@ export default async function Footer({ settings, services }: FooterProps) {
           </div>
 
           {/* Column 3: Services */}
-          <div>
+          <div className="hidden md:block">
             <h3 className="text-white font-bold font-heading mb-5 text-sm uppercase tracking-wider">
               {t('ourServices')}
             </h3>
