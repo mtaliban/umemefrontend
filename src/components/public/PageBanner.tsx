@@ -8,19 +8,23 @@ interface PageBannerProps {
     url: string;
     width?: number;
     height?: number;
-    alt?: string;
+    alt?: string | { en: string; sw: string };
   };
   breadcrumbs?: BreadcrumbItem[];
 }
 
 export default function PageBanner({ title, subtitle, image, breadcrumbs }: PageBannerProps) {
+  const altText = image?.alt
+    ? typeof image.alt === 'object' ? image.alt.en : image.alt
+    : title;
+
   return (
     <section className="relative min-h-[300px] lg:min-h-[420px] flex items-end overflow-hidden">
       {/* Background */}
       {image?.url ? (
         <Image
           src={image.url}
-          alt={image.alt ?? title}
+          alt={altText}
           fill
           className="object-cover"
           priority
