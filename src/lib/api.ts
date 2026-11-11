@@ -34,10 +34,10 @@ type Lang = string;
 
 function getBaseUrl(): string {
   if (typeof window === 'undefined') {
-    // Server-side: use internal Docker URL
-    return process.env.INTERNAL_API_URL ?? 'http://backend:8000';
+    // Server-side on Vercel: call backend directly
+    return process.env.NEXT_PUBLIC_API_URL ?? process.env.INTERNAL_API_URL ?? 'http://backend:8000';
   }
-  // Browser-side: use relative path (Caddy proxies /api to backend)
+  // Browser-side: use relative path (Next.js rewrites proxy /api to backend)
   return '';
 }
 
