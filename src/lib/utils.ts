@@ -1,18 +1,8 @@
 /**
- * Convert absolute backend media URLs to relative paths so they go
- * through the Next.js rewrite proxy (/media/:path* → backend).
- * This fixes mixed-content errors when the site is served over HTTPS
- * but the backend is HTTP.
+ * Returns the image URL as-is so Next.js image optimizer can proxy it.
+ * With unoptimized:false, the optimizer fetches HTTP backend images
+ * server-side and serves them to the browser over HTTPS — no mixed-content errors.
  */
 export function mediaUrl(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  try {
-    const u = new URL(url);
-    if (u.pathname.startsWith('/media/') || u.pathname.startsWith('/api/')) {
-      return u.pathname + u.search;
-    }
-  } catch {
-    // already a relative path — fine as-is
-  }
-  return url;
+  return url || undefined;
 }

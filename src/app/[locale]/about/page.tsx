@@ -65,7 +65,6 @@ export default async function AboutPage({
     <>
       <PageBanner
         title={resolveT(page.title) || t('title')}
-        subtitle={resolveT(page.intro)}
         image={page.banner}
         breadcrumbs={breadcrumbs}
       />
