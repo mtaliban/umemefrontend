@@ -7,6 +7,7 @@ import { Star, Quote } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import type { Testimonial } from '@/lib/types';
+import { mediaUrl } from '@/lib/utils';
 
 interface TestimonialsSliderProps {
   testimonials: Testimonial[];
@@ -66,7 +67,7 @@ export default function TestimonialsSlider({ testimonials, locale }: Testimonial
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                   {item.photo?.url ? (
                     <Image
-                      src={item.photo.url}
+                      src={mediaUrl(item.photo.url) ?? item.photo.url}
                       alt={item.name}
                       width={40}
                       height={40}

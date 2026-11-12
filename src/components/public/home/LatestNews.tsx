@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar } from 'lucide-react';
 import type { Post } from '@/lib/types';
+import { mediaUrl } from '@/lib/utils';
 
 interface LatestNewsProps {
   posts: Post[];
@@ -48,7 +49,7 @@ export default function LatestNews({ posts, locale, viewAllLabel }: LatestNewsPr
                 {post.cover?.url ? (
                   <div className="relative h-44 overflow-hidden">
                     <Image
-                      src={post.cover.url}
+                      src={mediaUrl(post.cover.url) ?? post.cover.url}
                       alt=""
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"

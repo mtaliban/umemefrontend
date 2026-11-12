@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { getOffices, getPage, getSettings } from '@/lib/api';
 import type { Locale } from '@/i18n/routing';
-import PageBanner from '@/components/public/PageBanner';
 import ContactForm from './ContactForm';
 
 interface ContactPageProps {
@@ -31,11 +30,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const page = pageResult.status === 'fulfilled' ? pageResult.value : {};
   const settings = settingsResult.status === 'fulfilled' ? settingsResult.value : null;
 
-  const breadcrumbs = [
-    { label: locale === 'sw' ? 'Nyumbani' : 'Home', href: '/' },
-    { label: t('title') },
-  ];
-
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? '';
   const orgJsonLd = settings
     ? {
@@ -61,11 +55,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
         />
       )}
 
-      <PageBanner
-        title={resolveT(page.title) || t('title')}
-        image={page.banner}
-        breadcrumbs={breadcrumbs}
-      />
+      {/* Simple page header — no image */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 font-heading">
+            {resolveT(page.title) || t('title')}
+          </h1>
+        </div>
+      </div>
 
       <section className="py-16 lg:py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

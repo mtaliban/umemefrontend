@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import type { Client } from '@/lib/types';
+import { mediaUrl } from '@/lib/utils';
 
 interface ClientsStripProps {
   clients: Client[];
@@ -35,7 +36,7 @@ export default function ClientsStrip({ clients, locale }: ClientsStripProps) {
             >
               {client.logo?.url ? (
                 <Image
-                  src={client.logo.url}
+                  src={mediaUrl(client.logo.url) ?? client.logo.url}
                   alt={client.name}
                   width={128}
                   height={64}

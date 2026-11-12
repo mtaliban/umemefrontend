@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
+import { mediaUrl } from '@/lib/utils';
 
 interface PageBannerProps {
   title: string;
@@ -18,12 +19,14 @@ export default function PageBanner({ title, subtitle, image, breadcrumbs }: Page
     ? typeof image.alt === 'object' ? image.alt.en : image.alt
     : title;
 
+  const imgSrc = mediaUrl(image?.url);
+
   return (
     <section className="relative min-h-[300px] lg:min-h-[420px] flex items-end overflow-hidden">
       {/* Background */}
-      {image?.url ? (
+      {imgSrc ? (
         <Image
-          src={image.url}
+          src={imgSrc}
           alt={altText}
           fill
           className="object-cover"

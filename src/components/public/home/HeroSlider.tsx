@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Zap, Droplets } from 'lucide-react';
 import type { HeroSlide } from '@/lib/types';
+import { mediaUrl } from '@/lib/utils';
 
 interface HeroSliderProps {
   slides: HeroSlide[];
@@ -18,6 +19,8 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
     return locale === 'sw' ? (field.sw || field.en) : field.en;
   };
 
+  const imgSrc = mediaUrl(slide.image?.url);
+
   return (
     <section
       className="relative w-full overflow-hidden"
@@ -25,9 +28,9 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
       aria-label="Hero"
     >
       {/* Background */}
-      {slide.image?.url ? (
+      {imgSrc ? (
         <Image
-          src={slide.image.url}
+          src={imgSrc}
           alt=""
           fill
           className="object-cover"
@@ -35,7 +38,13 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
           sizes="100vw"
         />
       ) : (
-        <div className="absolute inset-0 bg-gray-800" />
+        /* Fallback: dark with electricity+water icons */
+        <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#111111' }}>
+          <div className="flex gap-16 opacity-10">
+            <Zap className="w-48 h-48 text-white" />
+            <Droplets className="w-48 h-48 text-white" />
+          </div>
+        </div>
       )}
 
       {/* Dark overlay */}

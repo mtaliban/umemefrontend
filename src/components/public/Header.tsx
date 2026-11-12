@@ -71,17 +71,17 @@ export default function Header({ settings }: HeaderProps) {
 
             {/* 2. Nav — expands to fill middle, items spread evenly */}
             <nav
-              className="hidden lg:flex flex-1 items-center justify-center gap-9"
+              className="hidden lg:flex flex-1 items-center justify-center gap-1.5"
               aria-label="Main navigation"
             >
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
                     isActive(link.href)
                       ? 'bg-gray-900 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                      : 'text-gray-600 hover:bg-gray-900 hover:text-white'
                   }`}
                 >
                   {link.label}
