@@ -60,65 +60,100 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 {t('ourOffices')}
               </h2>
               {offices.length === 0 ? (
-                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm space-y-3">
+                <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
                   {settings?.phones?.[0] && (
-                    <div className="flex items-center gap-3 text-sm text-gray-700">
-                      <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <a href={`tel:${settings.phones[0]}`} className="hover:text-gray-900">{settings.phones[0]}</a>
-                    </div>
+                    <a href={`tel:${settings.phones[0]}`} className="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#FEF9E7' }}>
+                        <Phone className="w-5 h-5" style={{ color: '#D97706' }} />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-400 font-medium">{locale === 'sw' ? 'Simu' : 'Phone'}</p>
+                        <p className="text-sm font-semibold text-gray-900">{settings.phones[0]}</p>
+                      </div>
+                    </a>
                   )}
                   {settings?.emails?.[0] && (
-                    <div className="flex items-center gap-3 text-sm text-gray-700">
-                      <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <a href={`mailto:${settings.emails[0]}`} className="hover:text-gray-900 break-all">{settings.emails[0]}</a>
-                    </div>
+                    <a href={`mailto:${settings.emails[0]}`} className="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#EFF6FF' }}>
+                        <Mail className="w-5 h-5 text-blue-500" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-400 font-medium">Email</p>
+                        <p className="text-sm font-semibold text-gray-900 break-all">{settings.emails[0]}</p>
+                      </div>
+                    </a>
                   )}
                   {settings?.address && (
-                    <div className="flex items-start gap-3 text-sm text-gray-700">
-                      <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                      <span>{resolveT(settings.address)}</span>
+                    <div className="flex items-center gap-4 p-4">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#F0FDF4' }}>
+                        <MapPin className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-400 font-medium">{locale === 'sw' ? 'Anwani' : 'Address'}</p>
+                        <p className="text-sm font-semibold text-gray-900">{resolveT(settings.address)}</p>
+                      </div>
                     </div>
                   )}
                 </div>
               ) : (
                 offices.map((office) => (
-                  <div key={office._id} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-bold text-gray-900 text-sm font-heading">
+                  <div key={office._id} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100" style={{ background: '#111111' }}>
+                      <h3 className="font-bold text-white text-sm font-heading">
                         {resolveT(office.name)}
                       </h3>
                       {office.is_head_office && (
-                        <span className="px-2.5 py-0.5 text-xs font-bold rounded-full" style={{ background: '#FEF9E7', color: '#D97706' }}>
+                        <span className="px-2.5 py-0.5 text-xs font-bold rounded-full" style={{ background: '#F5B700', color: '#111111' }}>
                           {t('headOffice')}
                         </span>
                       )}
                     </div>
-                    <ul className="space-y-2.5">
+                    <div className="divide-y divide-gray-50">
                       {office.address && (
-                        <li className="flex items-start gap-2.5 text-sm text-gray-600">
-                          <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                          <span>{resolveT(office.address)}</span>
-                        </li>
+                        <div className="flex items-center gap-4 p-4">
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#F0FDF4' }}>
+                            <MapPin className="w-5 h-5 text-green-600" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-400 font-medium">{locale === 'sw' ? 'Anwani' : 'Address'}</p>
+                            <p className="text-sm text-gray-800">{resolveT(office.address)}</p>
+                          </div>
+                        </div>
                       )}
                       {office.phone && (
-                        <li className="flex items-center gap-2.5 text-sm">
-                          <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                          <a href={`tel:${office.phone}`} className="text-gray-700 hover:text-gray-900 font-medium">{office.phone}</a>
-                        </li>
+                        <a href={`tel:${office.phone}`} className="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#FEF9E7' }}>
+                            <Phone className="w-5 h-5" style={{ color: '#D97706' }} />
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-400 font-medium">{locale === 'sw' ? 'Simu' : 'Phone'}</p>
+                            <p className="text-sm font-semibold text-gray-900">{office.phone}</p>
+                          </div>
+                        </a>
                       )}
                       {office.email && (
-                        <li className="flex items-center gap-2.5 text-sm">
-                          <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                          <a href={`mailto:${office.email}`} className="text-gray-700 hover:text-gray-900 break-all">{office.email}</a>
-                        </li>
+                        <a href={`mailto:${office.email}`} className="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#EFF6FF' }}>
+                            <Mail className="w-5 h-5 text-blue-500" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-400 font-medium">Email</p>
+                            <p className="text-sm font-semibold text-gray-900 break-all">{office.email}</p>
+                          </div>
+                        </a>
                       )}
                       {office.hours && (
-                        <li className="flex items-center gap-2.5 text-sm text-gray-600">
-                          <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                          <span>{resolveT(office.hours)}</span>
-                        </li>
+                        <div className="flex items-center gap-4 p-4">
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#F5F3FF' }}>
+                            <Clock className="w-5 h-5 text-purple-500" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-400 font-medium">{locale === 'sw' ? 'Masaa ya Kazi' : 'Working Hours'}</p>
+                            <p className="text-sm text-gray-800">{resolveT(office.hours)}</p>
+                          </div>
+                        </div>
                       )}
-                    </ul>
+                    </div>
                   </div>
                 ))
               )}
