@@ -5,6 +5,9 @@ import HeroSlider from '@/components/public/home/HeroSlider';
 import StatsStrip from '@/components/public/home/StatsStrip';
 import ServicesPreview from '@/components/public/home/ServicesPreview';
 import FeaturedProjects from '@/components/public/home/FeaturedProjects';
+import WhyChooseUs from '@/components/public/home/WhyChooseUs';
+import ClientsStrip from '@/components/public/home/ClientsStrip';
+import LatestNews from '@/components/public/home/LatestNews';
 import TestimonialsSlider from '@/components/public/home/TestimonialsSlider';
 import CTABand from '@/components/public/home/CTABand';
 
@@ -66,7 +69,7 @@ export default async function HomePage({ params }: HomePageProps) {
   }
 
   // Always use this fixed order — ignore backend home_sections
-  const sections = ['hero', 'stats', 'services', 'projects', 'testimonials', 'cta'];
+  const sections = ['hero', 'stats', 'services', 'projects', 'why_choose_us', 'clients', 'news', 'testimonials', 'cta'];
 
   const whatsappNumber = data.settings?.whatsapp_number ?? '';
 
@@ -100,6 +103,26 @@ export default async function HomePage({ params }: HomePageProps) {
             projects={data.featured_projects}
             locale={locale}
             viewAllLabel={t('viewAllProjects')}
+          />
+        ) : null;
+
+      case 'why_choose_us':
+        return data.features && data.features.length > 0 ? (
+          <WhyChooseUs key="why_choose_us" features={data.features} locale={locale} />
+        ) : null;
+
+      case 'clients':
+        return data.clients && data.clients.length > 0 ? (
+          <ClientsStrip key="clients" clients={data.clients} locale={locale} />
+        ) : null;
+
+      case 'news':
+        return data.latest_posts && data.latest_posts.length > 0 ? (
+          <LatestNews
+            key="news"
+            posts={data.latest_posts}
+            locale={locale}
+            viewAllLabel={tCommon('viewAll')}
           />
         ) : null;
 

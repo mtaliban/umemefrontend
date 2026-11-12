@@ -70,9 +70,14 @@ export default function LatestNews({ posts, locale, viewAllLabel }: LatestNewsPr
                       {formatDate(post.published_at ?? post.created_at)}
                     </p>
                   )}
-                  <h3 className="font-bold text-gray-900 font-heading group-hover:text-gray-700 transition-colors line-clamp-2 text-sm leading-snug">
+                  <h3 className="font-bold text-gray-900 font-heading group-hover:text-gray-700 transition-colors line-clamp-2 text-sm leading-snug mb-2">
                     {resolveT(post.title)}
                   </h3>
+                  {post.excerpt && (
+                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                      {resolveT(post.excerpt)}
+                    </p>
+                  )}
                 </div>
               </Link>
             </article>

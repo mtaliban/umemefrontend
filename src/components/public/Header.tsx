@@ -81,7 +81,7 @@ export default function Header({ settings }: HeaderProps) {
                   className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                     isActive(link.href)
                       ? 'bg-gray-900 text-white'
-                      : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
