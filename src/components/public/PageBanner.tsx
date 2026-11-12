@@ -22,7 +22,7 @@ export default function PageBanner({ title, subtitle, image, breadcrumbs }: Page
   const imgSrc = mediaUrl(image?.url);
 
   return (
-    <section className="relative min-h-[300px] lg:min-h-[420px] flex items-end overflow-hidden">
+    <section className="relative min-h-[200px] lg:min-h-[280px] flex items-end overflow-hidden">
       {/* Background */}
       {imgSrc ? (
         <Image
@@ -67,7 +67,7 @@ export default function PageBanner({ title, subtitle, image, breadcrumbs }: Page
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-28">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-20">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <div className="mb-4">
             <Breadcrumbs items={breadcrumbs} light />
@@ -80,7 +80,7 @@ export default function PageBanner({ title, subtitle, image, breadcrumbs }: Page
           <div className="w-3 h-0.5 rounded-full bg-accent/50" />
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white font-heading leading-tight animate-fade-up" style={{ letterSpacing: '-0.02em' }}>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-heading leading-tight animate-fade-up" style={{ letterSpacing: '-0.02em' }}>
           {title}
         </h1>
         {subtitle && (

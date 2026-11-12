@@ -38,11 +38,15 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
           sizes="100vw"
         />
       ) : (
-        /* Fallback: dark with electricity+water icons */
-        <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#111111' }}>
-          <div className="flex gap-16 opacity-10">
-            <Zap className="w-48 h-48 text-white" />
-            <Droplets className="w-48 h-48 text-white" />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1a2744 40%, #0c2340 100%)' }}
+        >
+          <div className="absolute inset-0 flex items-center justify-end pr-16 opacity-5">
+            <Zap className="w-72 h-72 text-yellow-400" />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-start pl-16 opacity-5">
+            <Droplets className="w-72 h-72 text-blue-400" />
           </div>
         </div>
       )}
@@ -56,16 +60,11 @@ export default function HeroSlider({ slides, locale }: HeroSliderProps) {
           <div className="max-w-2xl">
             {slide.headline && (
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white font-heading leading-tight mb-4"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white font-heading leading-tight mb-8"
                 style={{ letterSpacing: '-0.02em' }}
               >
                 {resolveT(slide.headline)}
               </h1>
-            )}
-            {slide.text && (
-              <p className="text-base sm:text-lg text-white/85 mb-8 leading-relaxed max-w-xl">
-                {resolveT(slide.text)}
-              </p>
             )}
             <div className="flex flex-wrap gap-3">
               {slide.button1_url && slide.button1_label && (
