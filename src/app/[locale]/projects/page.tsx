@@ -6,6 +6,7 @@ import { MapPin, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { getProjects, getServiceCategories, getPage } from '@/lib/api';
 import type { Locale } from '@/i18n/routing';
 import PageBanner from '@/components/public/PageBanner';
+import { mediaUrl } from '@/lib/utils';
 import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectsPageProps {
@@ -85,61 +86,56 @@ export default async function ProjectsPage({ params, searchParams }: ProjectsPag
               </p>
             </div>
           ) : (
-            <div className="divide-y divide-gray-100 bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {result.items.map((project) => (
                 <Link
                   key={project._id}
                   href={`/projects/${project.slug}`}
-                  className="group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors"
+                  className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  {/* Small thumbnail */}
-                  <div className="relative w-20 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
+                  {/* Image — tall enough to see on mobile */}
+                  <div className="relative h-52 sm:h-48 overflow-hidden bg-gray-100">
                     {project.cover?.url ? (
                       <Image
-                        src={project.cover.url}
-                        alt=""
+                        src={mediaUrl(project.cover.url) ?? project.cover.url}
+                        alt={resolveT(project.title)}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="80px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                        <MapPin className="w-5 h-5 text-gray-400" />
+                      <div className="w-full h-full flex items-center justify-center" style={{ background: '#111111' }}>
+                        <span className="text-white/20 text-6xl font-black font-heading">
+                          {resolveT(project.title).charAt(0)}
+                        </span>
                       </div>
                     )}
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-gray-900 font-heading group-hover:text-gray-700 text-sm leading-snug line-clamp-1">
-                      {resolveT(project.title)}
-                    </h3>
-                    <div className="mt-1 flex items-center gap-3 text-xs text-gray-400 flex-wrap">
-                      {(project.location ?? project.region) && (
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
-                          {project.location ?? project.region}
-                        </span>
-                      )}
-                      {project.end_date && (
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(project.end_date).getFullYear()}
-                        </span>
-                      )}
+                    {/* Status badge over image */}
+                    <div className="absolute top-3 left-3">
+                      <span className={`px-2.5 py-1 text-xs font-bold rounded-full shadow-sm ${
+                        project.project_status === 'completed'
+                          ? 'bg-green-500 text-white'
+                          : 'bg-white text-gray-800'
+                      }`}>
+                        {project.project_status === 'completed'
+                          ? (locale === 'sw' ? 'Imekamilika' : 'Completed')
+                          : (locale === 'sw' ? 'Inaendelea' : 'Ongoing')}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Status badge */}
-                  <span className={`flex-shrink-0 px-2.5 py-1 text-xs font-bold rounded-full ${
-                    project.project_status === 'completed'
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {project.project_status === 'completed'
-                      ? (locale === 'sw' ? 'Imekamilika' : 'Completed')
-                      : (locale === 'sw' ? 'Inaendelea' : 'Ongoing')}
-                  </span>
+                  {/* Card content */}
+                  <div className="p-4">
+                    <h3 className="font-bold text-gray-900 font-heading text-sm leading-snug line-clamp-2 group-hover:text-gray-700 transition-colors">
+                      {resolveT(project.title)}
+                    </h3>
+                    {(project.location ?? project.region) && (
+                      <p className="mt-2 flex items-center gap-1.5 text-xs text-gray-400">
+                        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="line-clamp-1">{project.location ?? project.region}</span>
+                      </p>
+                    )}
+                  </div>
                 </Link>
               ))}
             </div>
