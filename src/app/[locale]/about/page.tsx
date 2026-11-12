@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { Download, ExternalLink, Target, Rocket, Shield, Users } from 'lucide-react';
+import { mediaUrl } from '@/lib/utils';
 import { getPage, getTeam, getCertifications, getSettings } from '@/lib/api';
 import type { Locale } from '@/i18n/routing';
 import PageBanner from '@/components/public/PageBanner';
@@ -70,36 +71,24 @@ export default async function AboutPage({
       />
 
       {/* Story section */}
-      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div className="absolute -right-32 top-0 w-96 h-96 rounded-full bg-primary/4 pointer-events-none" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+      <section className="py-14 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Story image */}
             {page.story_image?.url && (
-              <div className="relative">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
-                  <Image
-                    src={page.story_image.url}
-                    alt={resolveT(page.story_image.alt) || t('ourStory')}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-                {/* Floating stats badge */}
-                <div className="absolute -bottom-5 -right-5 rounded-2xl px-6 py-5 shadow-xl"
-                  style={{ background: 'linear-gradient(135deg, #D97706, #F59E0B)' }}>
-                  <p className="text-white font-bold text-4xl font-heading leading-none">400+</p>
-                  <p className="text-white/90 text-sm font-medium mt-1">
-                    {locale === 'sw' ? 'Miradi Iliyokamilika' : 'Projects Delivered'}
-                  </p>
-                </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg aspect-[4/3] relative">
+                <Image
+                  src={mediaUrl(page.story_image.url) ?? page.story_image.url}
+                  alt={resolveT(page.story_image.alt) || t('ourStory')}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             )}
 
             {/* Text content */}
-            <div>
+            <div className="lg:pt-2">
               <span className="section-label">{t('ourStory')}</span>
               <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-gray-900 font-heading leading-tight">
                 {locale === 'sw'
