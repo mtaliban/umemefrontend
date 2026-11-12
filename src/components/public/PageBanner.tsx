@@ -31,15 +31,13 @@ export default function PageBanner({ title, subtitle, image, breadcrumbs }: Page
           sizes="100vw"
         />
       ) : (
-        <div className="absolute inset-0 gradient-primary" />
+        <div className="absolute inset-0" style={{ background: '#111111' }} />
       )}
 
-      {/* Deep gradient overlay — left-heavy for readability */}
+      {/* Dark transparent overlay */}
       <div
         className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(105deg, rgba(124,45,18,0.95) 0%, rgba(194,65,12,0.82) 45%, rgba(234,88,12,0.45) 100%)',
-        }}
+        style={{ background: 'rgba(0,0,0,0.55)' }}
         aria-hidden="true"
       />
 

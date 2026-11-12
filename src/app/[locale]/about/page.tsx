@@ -196,22 +196,6 @@ export default async function AboutPage({
         </section>
       )}
 
-      {/* HSE Statement */}
-      {page.hse_statement && (
-        <section className="py-16 lg:py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #7C2D12 0%, #9A3412 100%)' }}>
-          <div className="absolute inset-0 opacity-[0.05]" aria-hidden="true"
-            style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }}
-          />
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 mb-6">
-              <Shield className="w-8 h-8 text-accent" />
-            </div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-white font-heading mb-5">{t('hseStatement')}</h2>
-            <p className="text-white/95 leading-relaxed text-lg">{resolveT(page.hse_statement)}</p>
-          </div>
-        </section>
-      )}
-
       {/* Team */}
       {team && team.length > 0 && (
         <section className="py-20 lg:py-28 bg-white">
